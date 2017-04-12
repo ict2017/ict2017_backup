@@ -1,0 +1,8 @@
+li
+la
+lw
+sw
+addi subi mul move
+bge thanh ble chuyen sort min thanh sort max
+j
+jal jr
