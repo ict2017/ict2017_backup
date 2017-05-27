@@ -33,6 +33,7 @@
 				<th>Team Name</th>
 				<th>League</th>
 				<th>Number of Players</th>
+				<th>Edit Team</th>
 				<th>Delete Team</th>
             </tr>
 <?php
@@ -43,10 +44,11 @@ $sql = 'SELECT	team.*, COUNT(playfor.id) FROM team left outer JOIN playfor ON te
 foreach ($dbh->query($sql) as $row) 
 {
 echo "<tr>
-<td>{$row['teamid']}</td>
-<td>{$row['team name']}</td>
-<td>{$row['league']}</td>
+<td><a href=\"teaminfo.php?id={$row['teamid']}\">{$row['teamid']}</a></td>
+<td><a href=\"teaminfo.php?id={$row['teamid']}\">{$row['team name']}</a></td>
+<td><a href=\"leagueinfo.php?name={$row['league']}\">{$row['league']}</a></td>
 <td>{$row['count']}</td>
+<td><a href=\"editteam.php?id={$row['teamid']}\">Edit</a></td>
 <td><a href=\"delete.php?teamid={$row['teamid']}\" onClick=\"return confirm('Delete This Team?')\">Delete</a></td>";
 echo "</tr>";
 //$i++;
