@@ -4,7 +4,15 @@ table, th, td {
    text-align: center;
    border-collapse: collapse;
    padding: 8px;
+   text-decoration:none;
 }
+table tr td a {
+	text-decoration: none;
+	}
+table tr td a:hover {
+	color: white;
+	background-color: black;
+	}
 body{
 	text-align: center;
 	background-color: #f2f2f2;
@@ -15,13 +23,13 @@ body{
 	text-align: left;
 }
 #top_header{
-
+	
 	color: white;
 	border: 1px solid georgian;
 	background-image:url("banner.jpg");
-background-repeat:no-repeat;
-background-size:contain;
-background-position:center;
+	background-repeat:no-repeat;
+	background-size:contain;
+	background-position:center;
 	padding: 20px ;/*The space between the text and the border*/
 }
 

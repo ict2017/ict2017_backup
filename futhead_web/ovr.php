@@ -27,7 +27,24 @@
   </ul>
 </nav>
 
-        <table>
+<?php
+require('connect_db.php');
+
+if (isset($_GET['ovr']))
+        $ovr = $_GET['ovr'];
+    else
+        die('Missing Overall Rating');
+	
+	$sql = "SELECT * FROM player left outer join playfor on player.id = playfor.id left outer join team on team.teamid = playfor.teamid WHERE player.ovr = '$ovr' ORDER BY player.id ";
+
+	$result = $dbh->prepare($sql);
+	$result->execute();
+	if(!$result->fetch(PDO::FETCH_ASSOC))
+	    die('Invalid Overall Rating or There Is No Player With That Overall Rating.');
+	$result->execute();
+	echo " <b>Listing Player(s) With Overall Rating $ovr :</b> <br><br>";
+?>
+        <table border="1"; width=100%>
             <tr>
                 <th>ID</th>
                 <th>Player Name</th>
@@ -41,11 +58,7 @@
 				<th>Delete Player</th>
             </tr>
 <?php
-require('connect_db.php');
-
-$sql = 'SELECT * FROM player left outer join playfor ON player.id = playfor.id left outer join team ON team.teamid = playfor.teamid ORDER BY player.*';
-foreach ($dbh->query($sql) as $row) 
-{
+foreach ($result->fetchall() as $row) {
 echo "<tr>
 <td><a href=\"playerinfo.php?id={$row['id']}\">{$row['id']}</a></td>
 <td><a href=\"playerinfo.php?id={$row['id']}\">{$row['name']}</a></td>
@@ -63,4 +76,5 @@ echo "<tr>
         </table>
     </body>
 </html>
+
 

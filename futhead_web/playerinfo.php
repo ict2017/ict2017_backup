@@ -26,7 +26,9 @@
         </div>
   </ul>
 </nav>
-
+<header >
+			<h1>Player Info</h1>
+</header>
 <?php
 require('connect_db.php');
 

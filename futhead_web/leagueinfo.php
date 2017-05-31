@@ -27,7 +27,24 @@
   </ul>
 </nav>
 
-        <table>
+<?php
+require('connect_db.php');
+
+if (isset($_GET['name']))
+        $league = $_GET['name'];
+    else
+        die('Missing League Name');
+	
+	$sql = "SELECT * FROM player left outer join playfor on player.id = playfor.id left outer join team on team.teamid = playfor.teamid WHERE team.league = '$league' ORDER BY player.id ";
+
+	$result = $dbh->prepare($sql);
+	$result->execute();
+	if(!$result->fetch(PDO::FETCH_ASSOC))
+	    die('Invalid League Name or There Is No Player In That League.');
+	$result->execute();
+	echo " <b>Listing Player(s) From $league :</b> <br><br>";
+?>
+        <table border="1"; width=100%>
             <tr>
                 <th>ID</th>
                 <th>Player Name</th>
@@ -41,11 +58,7 @@
 				<th>Delete Player</th>
             </tr>
 <?php
-require('connect_db.php');
-
-$sql = 'SELECT * FROM player left outer join playfor ON player.id = playfor.id left outer join team ON team.teamid = playfor.teamid ORDER BY player.*';
-foreach ($dbh->query($sql) as $row) 
-{
+foreach ($result->fetchall() as $row) {
 echo "<tr>
 <td><a href=\"playerinfo.php?id={$row['id']}\">{$row['id']}</a></td>
 <td><a href=\"playerinfo.php?id={$row['id']}\">{$row['name']}</a></td>
