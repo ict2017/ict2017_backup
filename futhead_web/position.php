@@ -50,21 +50,21 @@ ORDER BY player.*;';
 foreach ($dbh->query($sql) as $row) 
 {
 echo "<tr>
-<td>{$row['id']}</td>
-<td>{$row['name']}</td>
-<td>{$row['nation']}</td>
-<td>{$row['position']}</td>
-<td>{$row['team name']}</td>
-<td>{$row['squadnum']}</td>
-<td>{$row['league']}</td>
-<td>{$row['ovr']}</td>
+<td><a href=\"playerinfo.php?id={$row['id']}\">{$row['id']}</a></td>
+<td><a href=\"playerinfo.php?id={$row['id']}\">{$row['name']}</a></td>
+<td><a href=\"nationinfo.php?name={$row['nation']}\">{$row['nation']}</a></td>
+<td><a href=\"position.php\">{$row['position']}</a></td>
+<td><a href=\"teaminfo.php?id={$row['teamid']}\">{$row['team name']}</a></td>
+<td><a href=\"squadnum.php?sn={$row['squadnum']}\">{$row['squadnum']}</a></td>
+<td><a href=\"leagueinfo.php?name={$row['league']}\">{$row['league']}</a></td>
+<td><a href=\"ovr.php?ovr={$row['ovr']}\">{$row['ovr']}</a></td>
 <td><a href=\"edit.php?id={$row['id']}\">Edit</a></td>
 <td><a href=\"delete.php?id={$row['id']}\" onClick=\"return confirm('Delete This Player?')\">Delete</a></td>
 </tr>";
 }
 ?>
         </table>
-	<header id="att_header">
+	<header id="mid_header">
 			<h1>Midfield Position</h1>
 </header>
 	        <table border="1"; width=100%>
@@ -87,21 +87,21 @@ ORDER BY player.*
 foreach ($dbh->query($sql2) as $row) 
 {
 echo "<tr>
-<td>{$row['id']}</td>
-<td>{$row['name']}</td>
-<td>{$row['nation']}</td>
-<td>{$row['position']}</td>
-<td>{$row['team name']}</td>
-<td>{$row['squadnum']}</td>
-<td>{$row['league']}</td>
-<td>{$row['ovr']}</td>
+<td><a href=\"playerinfo.php?id={$row['id']}\">{$row['id']}</a></td>
+<td><a href=\"playerinfo.php?id={$row['id']}\">{$row['name']}</a></td>
+<td><a href=\"nationinfo.php?name={$row['nation']}\">{$row['nation']}</a></td>
+<td><a href=\"position.php\">{$row['position']}</a></td>
+<td><a href=\"teaminfo.php?id={$row['teamid']}\">{$row['team name']}</a></td>
+<td><a href=\"squadnum.php?sn={$row['squadnum']}\">{$row['squadnum']}</a></td>
+<td><a href=\"leagueinfo.php?name={$row['league']}\">{$row['league']}</a></td>
+<td><a href=\"ovr.php?ovr={$row['ovr']}\">{$row['ovr']}</a></td>
 <td><a href=\"edit.php?id={$row['id']}\">Edit</a></td>
 <td><a href=\"delete.php?id={$row['id']}\" onClick=\"return confirm('Delete This Player?')\">Delete</a></td>
 </tr>";
 }
 ?>
         </table>
-<header id="att_header">
+<header id="def_header">
 			<h1>Defensive Position</h1>
 </header>
 	</table>
@@ -124,14 +124,14 @@ ORDER BY player.*';
 foreach ($dbh->query($sql3) as $row) 
 {
 echo "<tr>
-<td>{$row['id']}</td>
-<td>{$row['name']}</td>
-<td>{$row['nation']}</td>
-<td>{$row['position']}</td>
-<td>{$row['team name']}</td>
-<td>{$row['squadnum']}</td>
-<td>{$row['league']}</td>
-<td>{$row['ovr']}</td>
+<td><a href=\"playerinfo.php?id={$row['id']}\">{$row['id']}</a></td>
+<td><a href=\"playerinfo.php?id={$row['id']}\">{$row['name']}</a></td>
+<td><a href=\"nationinfo.php?name={$row['nation']}\">{$row['nation']}</a></td>
+<td><a href=\"position.php\">{$row['position']}</a></td>
+<td><a href=\"teaminfo.php?id={$row['teamid']}\">{$row['team name']}</a></td>
+<td><a href=\"squadnum.php?sn={$row['squadnum']}\">{$row['squadnum']}</a></td>
+<td><a href=\"leagueinfo.php?name={$row['league']}\">{$row['league']}</a></td>
+<td><a href=\"ovr.php?ovr={$row['ovr']}\">{$row['ovr']}</a></td>
 <td><a href=\"edit.php?id={$row['id']}\">Edit</a></td>
 <td><a href=\"delete.php?id={$row['id']}\" onClick=\"return confirm('Delete This Player?')\">Delete</a></td>
 </tr>";

@@ -28,21 +28,23 @@
 </nav>
 
 <?php
-	require('connect_db.php');
-if (isset($_REQUEST['ok'])){
-	$search = addslashes($_GET['search']);
-if (empty($search)) //dung onclick dc
-    echo "Please Input Keyword To Search";
- else{
-$sql = "SELECT * FROM player left outer join playfor ON player.id = playfor.id left outer join team ON team.teamid = playfor.teamid WHERE LOWER(player.name) LIKE LOWER('%$search%') ORDER BY player.id ASC";
+require('connect_db.php');
 
-$stmt  = $dbh->prepare($sql);
-//$stmt ->bindValue(':search' , '%' . $search . '%', PDO::PARAM_STR);
-$stmt ->execute();
-$result = $stmt ->fetchAll();
-if ($stmt ->rowCount() > 0) { 
-echo " <b>Showing Player result(s) with keyword \"$search</b>\": <br><br>";
-echo " <table border=\"1\"; width=100% >
+if (isset($_GET['id']))
+        $teamid = $_GET['id'];
+    else
+        die('Missing Player ID');
+	
+	$sql = "SELECT * FROM player left outer join playfor on player.id = playfor.id left outer join team on team.teamid = playfor.teamid WHERE team.teamid = '$teamid' ORDER BY player.id ";
+
+	$result = $dbh->prepare($sql);
+	$result->execute();
+	if(!$result->fetch(PDO::FETCH_ASSOC))
+	    die('Invalid Team ID or There Is No Player In That Team.');
+
+	$result->execute();
+?>
+        <table border="1"; width=100%>
             <tr>
                 <th>ID</th>
                 <th>Player Name</th>
@@ -54,28 +56,24 @@ echo " <table border=\"1\"; width=100% >
 				<th>OVR</th>
 				<th>Edit Player</th>
 				<th>Delete Player</th>
-            </tr>";
-
-foreach( $result as $row ) {
+            </tr>
+<?php
+foreach ($result->fetchall() as $row) {
 echo "<tr>
-<td>{$row['id']}</td>
-<td>{$row['name']}</td>
-<td>{$row['nation']}</td>
-<td>{$row['position']}</td>
-<td>{$row['team name']}</td>
-<td>{$row['squadnum']}</td>
-<td>{$row['league']}</td>
-<td>{$row['ovr']}</td>
+<td><a href=\"playerinfo.php?id={$row['id']}\">{$row['id']}</a></td>
+<td><a href=\"playerinfo.php?id={$row['id']}\">{$row['name']}</a></td>
+<td><a href=\"nationinfo.php?name={$row['nation']}\">{$row['nation']}</a></td>
+<td><a href=\"position.php\">{$row['position']}</a></td>
+<td><a href=\"teaminfo.php?id={$row['teamid']}\">{$row['team name']}</a></td>
+<td><a href=\"squadnum.php?sn={$row['squadnum']}\">{$row['squadnum']}</a></td>
+<td><a href=\"leagueinfo.php?name={$row['league']}\">{$row['league']}</a></td>
+<td><a href=\"ovr.php?ovr={$row['ovr']}\">{$row['ovr']}</a></td>
 <td><a href=\"edit.php?id={$row['id']}\">Edit</a></td>
 <td><a href=\"delete.php?id={$row['id']}\" onClick=\"return confirm('Delete This Player?')\">Delete</a></td>
 </tr>";
 }
-                } else {
-echo '<b>No Match Found.</b>';
-}
-			} 
-        }
-        ?>
-		</table>
+?>
+        </table>
     </body>
-</html>		
+</html>
+
