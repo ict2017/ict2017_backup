@@ -1,3 +1,6 @@
+<?php
+   include('session.php');
+?>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -6,6 +9,10 @@
 	<link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
+	<div id="welcome_form" >
+      Welcome <?php echo $login_session; ?> &nbsp;|&nbsp;
+      <a href = "logout.php">Sign Out</a>
+	  </div>
 	<div id="big_wrapper">
 		<header id="top_header">
 			<h1>FIFA Player Database</h1>
@@ -14,8 +21,6 @@
 <nav id="top_menu" >
   <ul>
 	<li><a href=index.php>Home</a></li>
-	<li><a href=add.php>Add New Player</a></li>
-	<li><a href=addteam.php>Add New Team</a></li>
 	<li><a href=position.php>Position</a></li>
 	<li><a href=team.php>Team</a></li>
 	        <div id= "search_bar" align= "right">
@@ -54,8 +59,6 @@ if (isset($_GET['id']))
 				<th>Squad Number</th>
 				<th>League</th>
 				<th>OVR</th>
-				<th>Edit Player</th>
-				<th>Delete Player</th>
             </tr>
 <?php
 foreach ($result->fetchall() as $row) {
@@ -68,8 +71,6 @@ echo "<tr>
 <td><a href=\"squadnum.php?sn={$row['squadnum']}\">{$row['squadnum']}</a></td>
 <td><a href=\"leagueinfo.php?name={$row['league']}\">{$row['league']}</a></td>
 <td><a href=\"ovr.php?ovr={$row['ovr']}\">{$row['ovr']}</a></td>
-<td><a href=\"edit.php?id={$row['id']}\">Edit</a></td>
-<td><a href=\"delete.php?id={$row['id']}\" onClick=\"return confirm('Delete This Player?')\">Delete</a></td>
 </tr>";
 }
 ?>

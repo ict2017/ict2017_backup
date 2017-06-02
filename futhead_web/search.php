@@ -1,3 +1,6 @@
+<?php
+   include('session.php');
+?>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -6,6 +9,10 @@
 	<link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
+	<div id="welcome_form" >
+      Welcome <?php echo $login_session; ?> &nbsp;|&nbsp;
+      <a href = "logout.php">Sign Out</a>
+	  </div>
 	<div id="big_wrapper">
 		<header id="top_header">
 			<h1>FIFA Player Database</h1>
@@ -52,8 +59,6 @@ echo " <table border=\"1\"; width=100% >
 				<th>Squad Number</th>
 				<th>League</th>
 				<th>OVR</th>
-				<th>Edit Player</th>
-				<th>Delete Player</th>
             </tr>";
 
 foreach( $result as $row ) {
@@ -66,8 +71,6 @@ echo "<tr>
 <td>{$row['squadnum']}</td>
 <td>{$row['league']}</td>
 <td>{$row['ovr']}</td>
-<td><a href=\"edit.php?id={$row['id']}\">Edit</a></td>
-<td><a href=\"delete.php?id={$row['id']}\" onClick=\"return confirm('Delete This Player?')\">Delete</a></td>
 </tr>";
 }
                 } else {

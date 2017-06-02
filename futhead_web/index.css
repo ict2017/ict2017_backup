@@ -13,6 +13,25 @@ table tr td a:hover {
 	color: white;
 	background-color: black;
 	}
+#welcome_form{
+	width: 200px;
+	height:25px;
+    border-radius: 0px 0px 15px 15px;
+	margin: 0px auto;
+	padding: 5px 5px 5px 10px ;
+    position:fixed;/* You can also use position: absolute; */
+    top:0px;
+    right:20px;     
+    background: #000;
+	color: white;
+	text-align:left;
+	font-style: Courier;
+	font-weight: bold;
+}
+#welcome_form a{
+	text-decoration:none;
+	color: white;
+}
 body{
 	text-align: center;
 	background-color: #f2f2f2;
@@ -23,7 +42,6 @@ body{
 	text-align: left;
 }
 #top_header{
-	
 	color: white;
 	border: 1px solid georgian;
 	background-image:url("banner.jpg");
@@ -68,3 +86,4 @@ body{
 	padding: 8px 14px;
 	color: #069;
 }
+
