@@ -35,7 +35,30 @@ public class PlayerController {
 		}
 		return null;
 	}
-		
+	
+	public static int getPlayerNumberOfTeam(String teamid){
+		int count = 0;
+		for (player p: list){
+			if (p.getTeamid().equals(teamid))
+				count++;
+		}
+		return count;
+	}
+	
+	public static player getBestPlayer(String teamid){
+		int max = 0;
+		for (player p: list){
+			if (p.getTeamid().equals(teamid))
+				if (p.getOvr() > max)
+					max = p.getOvr();
+		}
+		for (player p: list){
+			if(p.getTeamid().equals(teamid) && p.getOvr() == max)
+				return p;
+		}
+		return null;
+	}
+	
 	public static void deletePlayerDB(int id){
 		Statement stmt = null;
 		Connection c = Process.connectDB();
@@ -94,4 +117,41 @@ public class PlayerController {
 }
 	}
 	
+	public static void updatePlayer(int id, String name, String nation, String position, int ovr, String teamid, int squadnum) {
+	for (player p: list) {
+		if(p.getId() == id){
+    	p.setName(name);
+    	p.setOvr(ovr);
+    	p.setNation(nation);
+    	p.setPosition(position);
+    	p.setTeamid(teamid);
+    	p.setSquadnum(squadnum);
+}
+    	updatePlayertoDB(id,name,nation,position,ovr,teamid,squadnum);
+	}
+}
+	public static void updatePlayertoDB(int id, String name, String nation, String position, int ovr, String teamid, int squadnum){
+		Connection c = Process.connectDB();
+		PreparedStatement stmt = null;
+		try {
+		stmt = c.prepareStatement("UPDATE player SET name = ?, position = ?, nation = ?, ovr = ? WHERE id = ?");
+		stmt.setString(1,name);  
+		stmt.setString(2,position);
+		stmt.setString(3,nation);
+		stmt.setInt(4,ovr);
+		stmt.setInt(5,id);
+		stmt.executeUpdate(); 
+        stmt.close();
+		stmt = c.prepareStatement("UPDATE playfor SET name = ?, teamid = ?, squadnum = ? WHERE id = ?");
+		stmt.setString(1,name);  
+		stmt.setString(2,teamid);
+		stmt.setInt(3,squadnum);
+		stmt.setInt(4,id);
+		stmt.executeUpdate(); 
+        stmt.close();
+         c.close();
+} catch (Exception e) {
+	e.printStackTrace();
+}
+	}
 }
