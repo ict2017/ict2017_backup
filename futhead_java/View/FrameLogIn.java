@@ -18,8 +18,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import Controller.EmployeeBusiness;
-import Model.Employee;
+import Controller.UserController;
+import Model.user;
 import java.awt.Color;
 import java.awt.SystemColor;
 
@@ -35,8 +35,8 @@ public class FrameLogIn extends JFrame {
 				try {
 					FrameLogIn frame = new FrameLogIn();
 					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception u) {
+					u.printStackTrace();
 				}
 			}
 		});
@@ -56,7 +56,7 @@ public class FrameLogIn extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblWelcome = new JLabel("Welcome to Fashion Shop Management System!");
+		JLabel lblWelcome = new JLabel("Welcome to FIFA Player Database");
 		lblWelcome.setFont(new Font("Bookman Old Style", Font.BOLD, 27));
 		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcome.setBounds(0, 5, 733, 54);
@@ -100,14 +100,13 @@ public class FrameLogIn extends JFrame {
 				
 				boolean isDone = false;
 				
-				for (Employee e: EmployeeBusiness.list) {
-					if (e.getUsername().equals(username)) {
-						if (Arrays.equals(e.getPassword(), password)) {
-							JOptionPane.showMessageDialog(contentPane, "Hello " + e.getName());
+				for (user u: UserController.list) {
+					if (u.getUsername().equals(username)) {
+						if (Arrays.equals(u.getPassword(), password)) {
+							JOptionPane.showMessageDialog(contentPane, "Hello " + u.getUsername());
 							isDone = true;
 							MainFrame frame = new MainFrame();
-							frame.setCurrentUser(e);
-							frame.displayInformation();
+							frame.setCurrentUser(u);
 							frame.setVisible(true);
 							frame.validateButtons();
 							getFrame().dispose();
@@ -131,7 +130,7 @@ public class FrameLogIn extends JFrame {
 		btnLogIn.setEnabled(false);
 		panel.add(btnLogIn);
 		
-		JButton btnCancel = new JButton("Cancel");
+		JButton btnCancel = new JButton("Exit");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if (JOptionPane.showConfirmDialog(contentPane, "Are you sure you want to exit") == 0) {

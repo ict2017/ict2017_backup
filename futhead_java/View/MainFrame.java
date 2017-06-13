@@ -1,6 +1,6 @@
 package View;
 
-import java.awt.EventQueue;
+//import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,22 +27,37 @@ import javax.swing.table.DefaultTableModel;
 
 import Controller.PlayerController;
 import Controller.TeamController;
+//import Controller.UserController;
 
 import Model.player;
 import Model.team;
+import Model.user;
 
 public class MainFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public user currentUser;
 	private DefaultTableModel playerTableModel;
 	private DefaultTableModel teamTableModel;
 	private DefaultTableModel atkPlayerTableModel;
 	private DefaultTableModel midPlayerTableModel;
 	private DefaultTableModel defPlayerTableModel;
 	
-	
-	
-	
+	private JButton btnDeletePlayer;
+	private JButton btnAddPlayer;
+	private JButton btnUpdatePlayer;
+	private JButton btnDeleteTeam;
+	private JButton btnAddTeam;
+	private JButton btnUpdateTeam;
+	private JButton btnDeleteAtkPlayer;
+	private JButton btnAddAtkPlayer;
+	private JButton btnUpdateAtkPlayer;
+	private JButton btnDeleteMidPlayer;
+	private JButton btnAddMidPlayer;
+	private JButton btnUpdateMidPlayer;
+	private JButton btnDeleteDefPlayer;
+	private JButton btnAddDefPlayer;
+	private JButton btnUpdateDefPlayer;
 	
 	public MainFrame() {
 	setTitle("FIFA Player Database");
@@ -67,21 +82,29 @@ public class MainFrame extends JFrame{
 	JMenu menu1 = new JMenu("Account");
 	setJMenuBar(menuBar);
 	menuBar.add(menu1);
+	JMenuItem register = new JMenuItem("Register");
+	register.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent event) {
+			FrameAddUser frame = new FrameAddUser(getFrame());
+			frame.setVisible(true);
+		}
+	});
+	menu1.add(register);
 	JMenuItem changePassword = new JMenuItem("Change password");
 	changePassword.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
-			//FrameUpdateEmployee frame = new FrameUpdateEmployee(getFrame());
-			//frame.displayAccountInformation(currentUser);
-			//frame.setVisible(true);
+			FrameUpdateUser frame = new FrameUpdateUser(getFrame());
+			frame.displayAccountInformation(currentUser);
+			frame.setVisible(true);
 		}
 	});
 	menu1.add(changePassword);
 	JMenuItem logout = new JMenuItem("Log out");
 	logout.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
-			//FrameLogIn frame = new FrameLogIn();
-			//frame.setVisible(true);
-			//getFrame().dispose();
+			FrameLogIn frame = new FrameLogIn();
+			frame.setVisible(true);
+			getFrame().dispose();
 		}
 	});
 	menu1.add(logout);
@@ -193,7 +216,7 @@ public class MainFrame extends JFrame{
 	btnCancel.setBounds(850, 435, 80, 30);
 	playerPanel.add(btnCancel);
 	
-	JButton btnDeletePlayer = new JButton("Delete");
+	btnDeletePlayer = new JButton("Delete");
 	btnDeletePlayer.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent event) {
 		int[] selectedRows = playerTable.getSelectedRows();
@@ -213,7 +236,7 @@ public class MainFrame extends JFrame{
 	btnDeletePlayer.setBounds(760, 435, 80, 30);
 	playerPanel.add(btnDeletePlayer);
 
-	JButton btnAddPlayer = new JButton("Add");
+	btnAddPlayer = new JButton("Add");
 	btnAddPlayer.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent event) {
 		FrameAddPlayer frame = new FrameAddPlayer(getFrame());
@@ -225,7 +248,7 @@ public class MainFrame extends JFrame{
 	playerPanel.add(btnAddPlayer);
 
 	
-	JButton btnUpdatePlayer = new JButton("Edit");
+	btnUpdatePlayer = new JButton("Edit");
 	btnUpdatePlayer.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
 			int[] selectedRows = playerTable.getSelectedRows();
@@ -333,7 +356,7 @@ public class MainFrame extends JFrame{
 	displayTeamTable(TeamController.list);
 	teamScrollPane.setViewportView(teamTable);
 	
-	JButton btnDeleteTeam = new JButton("Delete");
+	btnDeleteTeam = new JButton("Delete");
 	btnDeleteTeam.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
 			int[] selectedRows = teamTable.getSelectedRows();
@@ -353,7 +376,7 @@ public class MainFrame extends JFrame{
 	btnDeleteTeam.setBounds(760, 435, 80, 30);
 	teamPanel.add(btnDeleteTeam);
 	
-	JButton btnAddTeam = new JButton("Add");
+	btnAddTeam = new JButton("Add");
 	btnAddTeam.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
 			FrameAddTeam frame = new FrameAddTeam(getFrame());
@@ -370,7 +393,7 @@ public class MainFrame extends JFrame{
 	btnCancel2.addActionListener(new CancelActionListener());
 	teamPanel.add(btnCancel2);
 	
-	JButton btnUpdateTeam = new JButton("Edit");
+	btnUpdateTeam = new JButton("Edit");
 	btnUpdateTeam.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
 			int[] selectedRows = teamTable.getSelectedRows();
@@ -495,7 +518,7 @@ public class MainFrame extends JFrame{
 	btnCancel3.setBounds(850, 435, 80, 30);
 	atkPlayerPanel.add(btnCancel3);
 	
-	JButton btnDeleteAtkPlayer = new JButton("Delete");
+	btnDeleteAtkPlayer = new JButton("Delete");
 	btnDeleteAtkPlayer.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent event) {
 		int[] selectedRows = atkPlayerTable.getSelectedRows();
@@ -515,7 +538,7 @@ public class MainFrame extends JFrame{
 	btnDeleteAtkPlayer.setBounds(760, 435, 80, 30);
 	atkPlayerPanel.add(btnDeleteAtkPlayer);
 
-	JButton btnAddAtkPlayer = new JButton("Add");
+	btnAddAtkPlayer = new JButton("Add");
 	btnAddAtkPlayer.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent event) {
 		FrameAddPlayer frame = new FrameAddPlayer(getFrame());
@@ -527,7 +550,7 @@ public class MainFrame extends JFrame{
 	atkPlayerPanel.add(btnAddAtkPlayer);
 
 	
-	JButton btnUpdateAtkPlayer = new JButton("Edit");
+	btnUpdateAtkPlayer = new JButton("Edit");
 	btnUpdateAtkPlayer.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
 			int[] selectedRows = atkPlayerTable.getSelectedRows();
@@ -651,7 +674,7 @@ public class MainFrame extends JFrame{
 	btnCancel4.setBounds(850, 435, 80, 30);
 	midPlayerPanel.add(btnCancel4);
 	
-	JButton btnDeleteMidPlayer = new JButton("Delete");
+	btnDeleteMidPlayer = new JButton("Delete");
 	btnDeleteMidPlayer.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent event) {
 		int[] selectedRows = midPlayerTable.getSelectedRows();
@@ -671,7 +694,7 @@ public class MainFrame extends JFrame{
 	btnDeleteMidPlayer.setBounds(760, 435, 80, 30);
 	midPlayerPanel.add(btnDeleteMidPlayer);
 
-	JButton btnAddMidPlayer = new JButton("Add");
+	btnAddMidPlayer = new JButton("Add");
 	btnAddMidPlayer.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent event) {
 		FrameAddPlayer frame = new FrameAddPlayer(getFrame());
@@ -683,7 +706,7 @@ public class MainFrame extends JFrame{
 	midPlayerPanel.add(btnAddMidPlayer);
 
 	
-	JButton btnUpdateMidPlayer = new JButton("Edit");
+	btnUpdateMidPlayer = new JButton("Edit");
 	btnUpdateMidPlayer.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
 			int[] selectedRows = midPlayerTable.getSelectedRows();
@@ -806,7 +829,7 @@ public class MainFrame extends JFrame{
 	btnCancel5.setBounds(850, 435, 80, 30);
 	defPlayerPanel.add(btnCancel5);
 	
-	JButton btnDeleteDefPlayer = new JButton("Delete");
+	btnDeleteDefPlayer = new JButton("Delete");
 	btnDeleteDefPlayer.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent event) {
 		int[] selectedRows = defPlayerTable.getSelectedRows();
@@ -826,7 +849,7 @@ public class MainFrame extends JFrame{
 	btnDeleteDefPlayer.setBounds(760, 435, 80, 30);
 	defPlayerPanel.add(btnDeleteDefPlayer);
 
-	JButton btnAddDefPlayer = new JButton("Add");
+	btnAddDefPlayer = new JButton("Add");
 	btnAddDefPlayer.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent event) {
 		FrameAddPlayer frame = new FrameAddPlayer(getFrame());
@@ -838,7 +861,7 @@ public class MainFrame extends JFrame{
 	defPlayerPanel.add(btnAddDefPlayer);
 
 	
-	JButton btnUpdateDefPlayer = new JButton("Edit");
+	btnUpdateDefPlayer = new JButton("Edit");
 	btnUpdateDefPlayer.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent event) {
 			int[] selectedRows = defPlayerTable.getSelectedRows();
@@ -960,6 +983,47 @@ public void displayDefPlayerTable(ArrayList<player> list) {
 	}
 	}
 }
+
+		public void setCurrentUser(user u) {
+			this.currentUser = u;
+}
+
+		protected void validateButtons() {
+			if (currentUser.getAccountType().equals("Admin")) {
+				btnDeletePlayer.setEnabled(true);
+				btnAddPlayer.setEnabled(true);
+				btnUpdatePlayer.setEnabled(true);
+				btnDeleteTeam.setEnabled(true);
+				btnAddTeam.setEnabled(true);
+				btnUpdateTeam.setEnabled(true);
+				btnDeleteAtkPlayer.setEnabled(true);
+				btnAddAtkPlayer.setEnabled(true);
+				btnUpdateAtkPlayer.setEnabled(true);
+				btnDeleteMidPlayer.setEnabled(true);
+				btnAddMidPlayer.setEnabled(true);
+				btnUpdateMidPlayer.setEnabled(true);
+				btnDeleteDefPlayer.setEnabled(true);
+				btnAddDefPlayer.setEnabled(true);
+				btnUpdateDefPlayer.setEnabled(true);
+			}
+			else {
+				btnDeletePlayer.setEnabled(false);
+				btnAddPlayer.setEnabled(false);
+				btnUpdatePlayer.setEnabled(false);
+				btnDeleteTeam.setEnabled(false);
+				btnAddTeam.setEnabled(false);
+				btnUpdateTeam.setEnabled(false);
+				btnDeleteAtkPlayer.setEnabled(false);
+				btnAddAtkPlayer.setEnabled(false);
+				btnUpdateAtkPlayer.setEnabled(false);
+				btnDeleteMidPlayer.setEnabled(false);
+				btnAddMidPlayer.setEnabled(false);
+				btnUpdateMidPlayer.setEnabled(false);
+				btnDeleteDefPlayer.setEnabled(false);
+				btnAddDefPlayer.setEnabled(false);
+				btnUpdateDefPlayer.setEnabled(false);
+			}
+}
 	
 
 	public class CancelActionListener implements ActionListener {
@@ -974,7 +1038,7 @@ public void displayDefPlayerTable(ArrayList<player> list) {
 	
 	
 	
-	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -986,5 +1050,5 @@ public void displayDefPlayerTable(ArrayList<player> list) {
 				}
 			}
 		});
-	}
+	}*/
 }
