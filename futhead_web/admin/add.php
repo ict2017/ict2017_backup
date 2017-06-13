@@ -1,3 +1,6 @@
+<?php
+   include('../session.php');
+?>
 <html>
 <head>
     <title>Add New Player</title>
@@ -5,6 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
+	<div id="welcome_form" >
+      Welcome <?php echo $login_session; ?> &nbsp;|&nbsp;
+      <a href = "../logout.php">Sign Out</a>
+	  </div>
 	<div id="big_wrapper">
 		<header id="top_header">
 			<h1>FIFA Player Database</h1>
@@ -69,13 +76,13 @@
         <input id="nation" name="nation" type="text" value="" required="true">
     </p>
 	<p>
-        <label for="teamid"><b>Team ID: </b></label>
+        <label for="teamid"><b>Team: </b></label>
         <select id="teamid" name="teamid">
 		<?php
-		$sql = 'SELECT teamid FROM team';
+		$sql = 'SELECT * FROM team';
 		foreach ($dbh->query($sql) as $row) { 
 
-echo "<option value='" . $row['teamid'] . "'>" . $row['teamid'] . "</option>";
+echo "<option value='" . $row['teamid'] . "'>" . $row['team name'] . "</option>";
 }
 ?>
 </select>

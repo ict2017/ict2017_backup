@@ -1,0 +1,90 @@
+table, th, td {
+   border: 1px solid black;
+   margin: 0px;
+   text-align: center;
+   border-collapse: collapse;
+   padding: 8px;
+   text-decoration:none;
+}
+table tr td a {
+	text-decoration: none;
+	}
+table tr td a:hover {
+	color: white;
+	background-color: black;
+	}
+#welcome_form{
+	width: 200px;
+	height:25px;
+    border-radius: 0px 0px 15px 15px;
+	margin: 0px auto;
+	padding: 5px 5px 5px 10px ;
+    position:fixed;/* You can also use position: absolute; */
+    top:0px;
+    right:20px;     
+    background: #000;
+	color: white;
+	text-align:left;
+	font-style: Courier;
+	font-weight: bold;
+}
+#welcome_form a{
+	text-decoration:none;
+	color: white;
+}
+body{
+	text-align: center;
+	background-color: #f2f2f2;
+}
+#big_wrapper{
+	width: 1000px; 
+	margin: 20px auto; /*space between the text and the top*/
+	text-align: left;
+}
+#top_header{
+	
+	color: white;
+	border: 1px solid georgian;
+	background-image:url("banner.jpg");
+	background-repeat:no-repeat;
+	background-size:contain;
+	background-position:center;
+	padding: 20px ;/*The space between the text and the border*/
+}
+
+#top_menu {
+	width: 100%;
+	float: left;
+	margin: 0 0 1em 0;
+	padding-top: 5px;
+	background-color: #fff;
+	/*font: 20px bold;*/
+	}
+#top_menu ul {
+	list-style: none;
+	width: 1000px;
+	margin: 0 auto;
+	padding: 0; 
+	font-weight: bold;
+	}
+#top_menu li {
+	float: left; }
+#top_menu li a {
+	display: block;
+	padding: 8px 14px;
+	text-decoration: none;
+	color: #069; /*black;*/
+	border-right: 1px solid #ccc; }
+#top_menu li:first-child a {
+	border-left: 1px solid #ccc; }
+#top_menu li a:hover {
+	color: #c00;
+	background-color: #fff; }
+
+#search_bar{
+	display: block;
+	float: right;
+	padding: 8px 14px;
+	color: #069;
+}
+

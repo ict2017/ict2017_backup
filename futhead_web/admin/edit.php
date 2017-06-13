@@ -1,3 +1,6 @@
+<?php
+   include('../session.php');
+?>
 <html>
 <head>
     <title>Edit Player Information</title>
@@ -5,6 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
+	<div id="welcome_form" >
+      Welcome <?php echo $login_session; ?> &nbsp;|&nbsp;
+      <a href = "../logout.php">Sign Out</a>
+	  </div>
 	<div id="big_wrapper">
 		<header id="top_header">
 			<h1>FIFA Player Database</h1>
@@ -82,13 +89,13 @@ if (!$row)
         <input id="nation" name="nation" type="text" value="<?php echo $row['nation'] ;?>">
     </p>
     <p>
-        <label for="teamid">Team ID:</label>
+        <label for="teamid">Team:</label>
 	    <select id="teamid" name="teamid">
 		<?php
-		$sql2 = 'SELECT teamid FROM team';
+		$sql2 = 'SELECT * FROM team';
 		foreach ($dbh->query($sql2) as $row2) { 
 
-echo "<option value='" . $row2['teamid'] . "'>" . $row2['teamid'] . "</option>";
+echo "<option value='" . $row2['teamid'] . "'>" . $row2['team name'] . "</option>";
 }
 ?>
 </select>
